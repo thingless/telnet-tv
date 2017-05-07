@@ -5,5 +5,5 @@ while true; do
 
 FRAME_REFRESH='[H[0;0H'
 SCREEN_SETUP='[?25l[7l[2J[0;0H'
-DISPLAY= mplayer -vo aa:driver=curses:width=100:height=40 -monitoraspect 10:7 "$MOVIE" -nosound -loop 0 -really-quiet -vf framestep=5 | perl -p -e "s/\\n/${FRAME_REFRESH}/" | ncat -k -l --crlf --send-only 37337 & ncat --sh-exec "echo '${SCREEN_SETUP}' && ncat --recv-only localhost 37337" -l -k 23
+DISPLAY= mplayer -vo aa:driver=curses:width=100:height=40 -monitoraspect 10:7 "$MOVIE" -nosound -loop 0 -really-quiet | perl -p -e "s/\\n/${FRAME_REFRESH}/" | ncat -k -l --crlf --send-only 37337 & ncat --sh-exec "echo -n '${SCREEN_SETUP}' && ncat --recv-only localhost 37337" -l -k 23
 done
