@@ -25,7 +25,7 @@ process.stdin.on('data', function(chunk) {
 var s = new telnet.Server(function(client) {
     // I am the connection callback
     clients.add(client);
-    console.log("connected term=%s %dx%d", client.term, client.windowSize[0], client.windowSize[1]);
+    //console.log("connected term=%s %dx%d", client.term, client.windowSize[0], client.windowSize[1]);
 
     client.write('[7l[2J[0;0H');
 
