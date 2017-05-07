@@ -23,6 +23,8 @@ var s = new telnet.Server(function(client) {
     clients.add(client);
     console.log("connected term=%s %dx%d", client.term, client.windowSize[0], client.windowSize[1]);
 
+    client.write('[7l[2J[0;0H');
+
     client.on('data', function (buf) {
       console.log("Connection data:", buf.toString('ascii'));
     });

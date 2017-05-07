@@ -1,2 +1,2 @@
 #!/bin/bash
-DISPLAY= mplayer -vo aa:driver=linux:width=80:height=24 sunny-family-blowing-air-bubbl.mp4 -loop 0 -really-quiet -quiet | perl -p -e "s/\\n/[H/" | node telnet-tv.js
+DISPLAY= mplayer -vo aa:driver=linux:width=80:height=24 sunny-family-blowing-air-bubbl.mp4 -loop 0 -really-quiet -quiet | perl -p -e "s/\\n/[H[0;0H/" | node telnet-tv.js
