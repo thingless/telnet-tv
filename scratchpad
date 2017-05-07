@@ -1,5 +1,5 @@
 #!/bin/bash
 MOVIE="$(find /data/video/movies -type f | shuf -n 1)" 
 while true; do
-DISPLAY= mplayer/mplayer -vo aa:driver=curses:width=100:height=40 -monitoraspect 10:7 "$MOVIE" -nosound -loop 0 -really-quiet | perl -p -e "s/\\n/[H[0;0H/" | node telnet-tv.js --port 23 >/dev/null
+DISPLAY= mplayer/mplayer -vo aa:driver=curses:width=100:height=40 -monitoraspect 10:7 "$MOVIE" -nosound -loop 0 -really-quiet -vf framestep=5 | perl -p -e "s/\\n/[H[0;0H/" | node telnet-tv.js --port 23 >/dev/null
 done
