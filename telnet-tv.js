@@ -10,7 +10,7 @@ program
 var clients = new Set();
 function writeToClients(chunk){
     Array.from(clients.values()).forEach((client)=>{
-        client.write(frame);
+        client.write(chunk);
     })
 }
 
