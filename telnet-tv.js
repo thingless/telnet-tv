@@ -13,7 +13,7 @@ function writeToClients(chunk){
         try {
             client.write(chunk);
         } catch (err) {
-            clients.remove(client);
+            clients.delete(client);
         }
     })
 }
