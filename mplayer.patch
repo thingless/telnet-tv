@@ -1,0 +1,32 @@
+*** /var/src/MPlayer-1.3.0/libvo/vo_aa.c	2016-02-12 12:23:39.000000000 -0800
+--- mplayer/libvo/vo_aa.c	2017-05-07 06:50:18.741987599 -0700
+*************** static int osdx, osdy;
+*** 92,97 ****
+--- 92,98 ----
+  static int osd_text_length = 0;
+  int aaconfigmode=1;
+  font_desc_t* vo_font_save = NULL;
++ font_desc_t* sub_font_save = NULL;
+  static struct SwsContext *sws=NULL;
+  
+  /* configuration */
+*************** config(uint32_t width, uint32_t height,
+*** 249,256 ****
+  
+      /* now init our own 'font' */
+      if(!vo_font_save) vo_font_save = vo_font;
+!     if(vo_font == vo_font_save) {
+!       vo_font=malloc(sizeof(font_desc_t));//if(!desc) return NULL;
+        memset(vo_font,0,sizeof(font_desc_t));
+        vo_font->pic_a[0]=malloc(sizeof(raw_file));
+        memset(vo_font->pic_a[0],0,sizeof(raw_file));
+--- 250,258 ----
+  
+      /* now init our own 'font' */
+      if(!vo_font_save) vo_font_save = vo_font;
+!     if(!sub_font_save) sub_font_save = vo_font;
+!     if(vo_font == vo_font_save || sub_font == sub_font_save) {
+!       vo_font=sub_font=malloc(sizeof(font_desc_t));//if(!desc) return NULL;
+        memset(vo_font,0,sizeof(font_desc_t));
+        vo_font->pic_a[0]=malloc(sizeof(raw_file));
+        memset(vo_font->pic_a[0],0,sizeof(raw_file));
